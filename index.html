@@ -1,5 +1,15 @@
 <html>
 <style>
+.select2_cont{
+  padding: 20px;
+    display: inline-block;
+      width: 300px;
+}
+
+.select2{
+  width: 100%
+}
+
 .group{
   width: 100%;
   margin: 20px auto 20px auto;
@@ -55,9 +65,23 @@ text.m_name{
 
 <head>
 <!--<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>-->
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<link href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1-rc.1/css/select2.min.css" rel="stylesheet" />
+<script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1-rc.1/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.js"></script>
 </head>
 <body>
+  <div class='select2_cont'>
+  <select id='merchant1' class='select2'> </select>
+  </div>
+
+  <div class='select2_cont'>
+  <select id='merchant2' class='select2'> </select>
+  </div>
+
   <div class='group'>
   <a class='btn checked' id='Sum'> Sum </a>
   <a class='btn' id='Count'> Count </a>
@@ -76,13 +100,31 @@ text.m_name{
     <svg id='agg3'></svg>
   </div>
 </body>
-<script type='text/javascript' charset='utf-8'>
-
-var dataset;
+<script type='text/javascript' charset='utf-8' >
+  
+  var globalDataset;
+var twoMerchDataset;
 var datasetSub;
+var globalMerchNames;
 var merch_names;
+var selectedKey = 'Sum';
+
+$('.select2').select2();
+
+var merchant1 = d3.select('#merchant1');
+var merchant2 = d3.select('#merchant2');
+
+
+var updatePlots = function(){
+  filterMerchants();
+  console.log('eeeeeeeeeeh');
+  setupKey(selectedKey);
+  plot();
+  small_plots();
+}
+
 // read data
-d3.csv('https://gist.githubusercontent.com/yahiaelgamal/9458ee03571259fd546c/raw/207434502cfbb225ae74f6d798a58a36f6b80acc/perf_sub_two.csv', function(error, data){
+d3.csv('https://gist.githubusercontent.com/yahiaelgamal/9458ee03571259fd546c/raw/e6b1a4440c5b3d1b78e3f96bfca5201b705126db/perf_sub_two.csv', function(error, data){
   if(error) throw error;
 
   data.forEach(function(d){
@@ -90,15 +132,33 @@ d3.csv('https://gist.githubusercontent.com/yahiaelgamal/9458ee03571259fd546c/raw
     d.month_number = +d.month_number;
   })
 
-  dataset = data;
-  merch_names  = d3.set(dataset.map(function(d) { return d.tx_merchant_clean})).values();
+  globalDataset = data;
+  globalMerchNames  = d3.set(globalDataset.map(function(d) { return d.tx_merchant_clean})).values();
+
+  globalMerchNames.forEach(function(x, i) {
+    merchant1.append('option').attr({value: x}).text(x);
+    merchant2.append('option').attr({value: x}).text(x);
+  })
+
+  $('#merchant1').val(globalMerchNames[2]).trigger('change');
+  $('#merchant2').val(globalMerchNames[4]).trigger('change');
+
+  filterMerchants();
   main_plot();
   small_plots();
 })
 
 var comma = d3.format(",.0f");
 
-var main_plot = function(){
+var filterMerchants = function(){
+  m1 = $('#merchant1').val();
+  m2 = $('#merchant2').val();
+  merch_names = [m1, m2];
+  dataset = globalDataset.filter(function(d) { return d.tx_merchant_clean === m1 || d.tx_merchant_clean === m2});
+}
+
+
+
   var margins = {top: 40, right: 10, bottom: 80, left: 80},
       width = 960 - margins.right - margins.left,
       height = 500 - margins.top - margins.bottom;
@@ -146,123 +206,128 @@ var main_plot = function(){
 
   var title = svg.append('g');
 
+
+
+var main_plot = function(){
+
   d3.selectAll('a.btn').on('mousedown', function(){
     var me = d3.select(this);
 
-    var selectedKey = me.attr('id');
+    selectedKey = me.attr('id');
 
     d3.selectAll('a.btn').classed('checked', false);
     me.classed('checked', true);
     setupKey(selectedKey);
-    plot(selectedKey);
+    console.log('selected key is ' + selectedKey)
+    plot();
   })
 
+  setupKey('Sum');
+  plot();
+}
 
-  var setupKey = function(selectedKey){
+var setupKey = function(selectedKey){
+  datasetSub = dataset.filter(function(d) { return d.key === selectedKey});
 
-    datasetSub = dataset.filter(function(d) { return d.key === selectedKey });
+  x.domain(d3.extent(datasetSub.map(function(d) { return d.month_number; })))
+  //y.domain(d3.extent(datasetSub.map(function(d) { return d.value; })))
+  y.domain([0, d3.max(datasetSub.map(function(d) { return d.value; }))])
 
-    x.domain(d3.extent(datasetSub.map(function(d) { return d.month_number; })))
-    //y.domain(d3.extent(datasetSub.map(function(d) { return d.value; })))
-    y.domain([0, d3.max(datasetSub.map(function(d) { return d.value; }))])
+  col.domain(merch_names)
+}
 
-    col.domain(merch_names)
-  }
+var plot = function(){
+  // title
+  var m_names = title.selectAll('text').data(merch_names, function(d) { return d});
 
-  var plot = function(){
-    // title
+  m_names.enter().append('text')
+  .attr({
+    fill: function(d) { return col(d) },
+    x: function(d, i) { return  250 + i * 250},
+    dy: '-20px'
+  })
+  .classed('m_name', true)
+  .text(function(d) { return d})
 
-    var m_names = title.selectAll('text').data(merch_names);
+  m_names.exit().remove();
 
-    m_names.enter().append('text')
-    .attr({
-      fill: function(d) { return col(d) },
-      x: function(d, i) { return  250 + i * 250},
-      dy: '-20px'
-    })
-    .classed('m_name', true)
-    .text(function(d) { return d})
-
-    // axis
-    if(svg.select('.axis').node() == null){
-      svg.append('g')
-        .attr('class', 'x axis')
-        .attr('transform', 'translate(0, ' + height + ')')
-        .call(xAxis);
-
-      svg.append('g')
-        .attr('class', 'y axis')
-        .attr('transform', 'translate(' +0 +',0)')
-        .call(yAxis);
-      }
-
-    svg.selectAll('g.x.axis').transition().ease('elastic')
+  // axis
+  if(svg.select('.axis').node() == null){
+    svg.append('g')
+      .attr('class', 'x axis')
+      .attr('transform', 'translate(0, ' + height + ')')
       .call(xAxis);
 
-    svg.selectAll('g.y.axis').transition().ease('in-out ')
+    svg.append('g')
+      .attr('class', 'y axis')
+      .attr('transform', 'translate(' +0 +',0)')
       .call(yAxis);
+    }
 
-    // divide into two
-    var merchants_arr = merch_names.map(function(m) { return datasetSub.filter(function(d) { return d.tx_merchant_clean == m})});
+  svg.selectAll('g.x.axis').transition().ease('elastic')
+    .call(xAxis);
 
-    // handling merchants in-out
-    var m_layer = svg.selectAll('.merchant').data(merchants_arr);
+  svg.selectAll('g.y.axis').transition().ease('in-out ')
+    .call(yAxis);
+
+  // divide into two
+  var merchants_arr = merch_names.map(function(m) { return datasetSub.filter(function(d) { return d.tx_merchant_clean == m})});
+
+
+  // handling merchants in-out
+  var m_layer = svg.selectAll('.merchant').data(merchants_arr);
+  
+  m_layer.enter().append('g')
+    .attr('class', 'merchant');
+
+  m_layer.exit().remove()
+
+
+  // pathes
+  m_layer_path = m_layer.selectAll('path')
+    .data(function(d) {return [d.sort(function(a, b) { return a.month_number - b.month_number })] });
+
+  m_layer_path.transition()
+    .attr('d', function(d) { return line(d) })
+    .attr('stroke', function(d) { return col(d[0].tx_merchant_clean)})
+    .attr('stroke-width', '4px');
+
+
+  m_layer_path.enter().append('path')
+    .attr('d', function(d) { return line_hor(d) }).transition().delay(500).ease('out-in')
+    .attr('d', function(d) { return line(d) })
+    .attr('stroke', function(d) { return col(d[0].tx_merchant_clean)})
+    .attr('stroke-width', '4px')
+
+  m_layer_path.exit().remove()
+
+
+  // circle
+  var m_layer_circle = m_layer.selectAll('circle')
+    .data(function(d) { return d }, function(d) { return d.month_number });
     
-    m_layer.enter().append('g')
-      .attr('class', 'merchant');
+  m_layer_circle.transition().ease('sin')
+    .attr({
+      cx: function(d) { return x(d.month_number) },
+      cy: function(d) { return y(d.value) },
+      r: '5px'
+    });
 
-    m_layer.exit().remove()
+  m_layer_circle.enter().append('circle')
+    .attr({
+      cx: function(d) { return x(d.month_number) },
+      cy: height,
+      r: '5px',
+      fill: 'white',
+      stroke: function(d) { return col(d.tx_merchant_clean)},
+      'stroke-width': '3px'
+    }).transition().delay(function(d) { return d.month_number * 20})
+    .attr({
+      cx: function(d) { return x(d.month_number) },
+      cy: function(d) { return y(d.value) },
+    });
 
-
-    // pathes
-    m_layer_path = m_layer.selectAll('path')
-      .data(function(d) {return [d.sort(function(a, b) { return a.month_number - b.month_number })] });
-
-    m_layer_path.transition()
-      .attr('d', function(d) { return line(d) })
-      .attr('stroke', function(d) { return col(d[0].tx_merchant_clean)})
-      .attr('stroke-width', '4px')
-
-
-    m_layer_path.enter().append('path')
-      .attr('d', function(d) { return line_hor(d) }).transition().delay(500).ease('out-in')
-      .attr('d', function(d) { return line(d) })
-      .attr('stroke', function(d) { return col(d[0].tx_merchant_clean)})
-      .attr('stroke-width', '4px')
-
-    m_layer_path.exit().remove()
-
-
-    // circle
-    var m_layer_circle = m_layer.selectAll('circle')
-      .data(function(d) { return d }, function(d) { return d.month_number });
-      
-    m_layer_circle.transition().ease('sin')
-      .attr({
-        cx: function(d) { return x(d.month_number) },
-        cy: function(d) { return y(d.value) },
-        r: '5px'
-      });
-
-    m_layer_circle.enter().append('circle')
-      .attr({
-        cx: function(d) { return x(d.month_number) },
-        cy: height,
-        r: '5px',
-        fill: 'white',
-        stroke: function(d) { return col(d.tx_merchant_clean)},
-        'stroke-width': '3px'
-      }).transition().delay(function(d) { return d.month_number * 20})
-      .attr({
-        cx: function(d) { return x(d.month_number) },
-        cy: function(d) { return y(d.value) },
-      });
-
-    m_layer_circle.exit().remove();
-  }
-
-  setupKey('Sum');
-  plot('Sum');
+  m_layer_circle.exit().remove();
 }
 
 var small_plots = function(){
@@ -290,7 +355,7 @@ var small_plots = function(){
     height: height + margins.top + margins.bottom
   })
 
-  var countDataset = dataset.filter(function(d) { return d.key === 'Count'})
+  var countDataset = dataset.filter(function(d) { return d.key === 'Count' });
 
   var merchants_data = merch_names.map(function(m) { 
     return { 
@@ -302,7 +367,7 @@ var small_plots = function(){
   });
 
   x.domain([0, d3.max(merchants_data, function(d) { return d.value})])
-  y.domain([0,1]);
+  y.domain([1,0]);
 
 
   merchants_data[0].value;
@@ -310,7 +375,8 @@ var small_plots = function(){
   // count thing
   var svgCountData = svgCount.selectAll('rect').data(merchants_data)
 
-  svgCountData.enter().append('rect')
+  svgCountDataEnter = svgCountData.enter()
+  svgCountDataEnter.append('rect')
     .attr({
       width: 0,
       height: '25px',
@@ -329,7 +395,7 @@ var small_plots = function(){
       width: function(d) { return x(d.value) },
     });
 
-  svgCount.append('text')
+  svgCountDataEnter.append('text')
     .attr({
       transform: 'translate( ' + width /2 + ',' + (height + margins.top+margins.bottom) +' )',
       dy: '-2px'
@@ -356,7 +422,7 @@ var small_plots = function(){
   });
 
   x.domain([0, d3.max(merchants_data, function(d) { return d.value})])
-  y.domain([0,1]);
+  y.domain([1,0]);
 
 
   merchants_data[0].value;
@@ -364,7 +430,8 @@ var small_plots = function(){
   // count thing
   var svgCountData = totValSvg.selectAll('rect').data(merchants_data)
 
-  svgCountData.enter().append('rect')
+  var svgCountDataEnter = svgCountData.enter()
+  svgCountDataEnter.append('rect')
     .attr({
       width: 0,
       height: '25px',
@@ -383,7 +450,7 @@ var small_plots = function(){
       width: function(d) { return x(d.value) },
     });
 
-  totValSvg.append('text')
+  svgCountDataEnter.append('text')
     .attr({
       transform: 'translate( ' + width /2 + ',' + (height + margins.top+margins.bottom) +' )',
       dy: '-2px'
@@ -410,7 +477,7 @@ var small_plots = function(){
   });
 
   x.domain([0, d3.max(merchants_data, function(d) { return d.value})])
-  y.domain([0,1]);
+  y.domain([1,0]);
 
 
   merchants_data[0].value;
@@ -418,7 +485,8 @@ var small_plots = function(){
   // avg thing
   var svgAvgData = avgValSvg.selectAll('rect').data(merchants_data)
 
-  svgAvgData.enter().append('rect')
+  var svgAvgDataEnter = svgAvgData.enter()
+  svgAvgDataEnter.append('rect')
     .attr({
       width: 0,
       height: '25px',
@@ -437,11 +505,15 @@ var small_plots = function(){
       width: function(d) { return x(d.value) },
     });
 
-  avgValSvg.append('text')
+  svgAvgDataEnter.append('text')
     .attr({
       transform: 'translate( ' + width /2 + ',' + (height + margins.top+margins.bottom) +' )',
       dy: '-5px'
     }).text('Avg Transaction Value')
 }
+
+$('#merchant1').on('select2:select', updatePlots)
+$('#merchant2').on('select2:select', updatePlots)
+
 </script>
 </html>
