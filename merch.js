@@ -384,7 +384,7 @@ d3.selectAll('a.btn').on('mousedown', function(){
 })
 
 // read data
-d3.csv('https://gist.github.com/yahiaelgamal/9458ee03571259fd546c/raw/b37ee2548618f4f9ce46261cc46f75b67f05bc5f/perf_sub_two.csv', function(error, data){
+d3.csv('./perf_sub.csv', function(error, data){
   if(error) throw error;
 
   data.forEach(function(d){
