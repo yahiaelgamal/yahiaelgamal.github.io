@@ -4,6 +4,7 @@ var datasetSub;
 var globalMerchNames;
 var merch_names;
 var dataset;
+var firstTime=true;
 var selectedKey = 'Sum';
 
 $('.select2').select2();
@@ -190,12 +191,14 @@ var small_plots = function(){
       width: function(d) { return x(d.value) },
     });
 
-  svgCount.append('text')
-    .attr({
-      transform: 'translate( ' + width /2 + ',' + (height + margins.top+margins.bottom) +' )',
-      dy: '-2px',
-      'text-anchor': 'start'
-    }).text('Transaction Count');
+  if(firstTime){
+    svgCount.append('text')
+      .attr({
+        transform: 'translate( ' + width /2 + ',' + (height + margins.top+margins.bottom) +' )',
+        dy: '-2px',
+        'text-anchor': 'start'
+      }).text('Transaction Count');
+  }
 
 
   // ######################################
@@ -246,12 +249,14 @@ var small_plots = function(){
       width: function(d) { return x(d.value) },
     });
 
-  totValSvg.append('text')
-    .attr({
-      transform: 'translate( ' + width /2 + ',' + (height + margins.top+margins.bottom) +' )',
-      dy: '-2px',
-      'text-anchor': 'start'
-    }).text('Total Transaction Value');
+  if(firstTime){
+    totValSvg.append('text')
+      .attr({
+        transform: 'translate( ' + width /2 + ',' + (height + margins.top+margins.bottom) +' )',
+        dy: '-2px',
+        'text-anchor': 'start'
+      }).text('Total Transaction Value');
+  }
 
 
   // ##################################### 
@@ -302,12 +307,18 @@ var small_plots = function(){
       width: function(d) { return x(d.value) },
     });
 
-  avgValSvg.append('text')
-    .attr({
-      transform: 'translate( ' + width /2 + ',' + (height + margins.top+margins.bottom) +' )',
-      dy: '-5px',
-      'text-anchor': 'start'
-    }).text('Avg Transaction Value')
+  if(firstTime){
+    avgValSvg.append('text')
+      .attr({
+        transform: 'translate( ' + width /2 + ',' + (height + margins.top+margins.bottom) +' )',
+        dy: '-5px',
+        'text-anchor': 'start'
+      }).text('Avg Transaction Value');
+    }
+
+
+  if(firstTime)
+    firstTime = false
 }
 
 var updatePlots = function(){
