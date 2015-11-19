@@ -80,7 +80,7 @@ var plot = function(){
 
   // pathes
   m_layer_path = m_layer.selectAll('path')
-    .data(function(d) {return [d.sort(function(a, b) { return a.month_number - b.month_number })] });
+    .data(function(d) {return [d] });
 
   m_layer_path.transition()
     .attr('d', function(d) { return line(d) })
@@ -89,7 +89,8 @@ var plot = function(){
 
 
   m_layer_path.enter().append('path')
-    .attr('d', function(d) { return line_hor(d) }).transition().delay(500).ease('out-in')
+    .attr('d', function(d) { return line_hor(d) })
+    .transition().delay(500).ease('out-in')
     .attr('d', function(d) { return line(d) })
     .attr('stroke', function(d) { return col(d[0].tx_merchant_clean)})
     .attr('stroke-width', '4px')
@@ -359,6 +360,7 @@ var xAxis = d3.svg.axis()
 
 var yAxis = d3.svg.axis()
               .scale(y)
+              .innerTickSize(-width)
               .orient('left');
 
 var line = d3.svg.line()
