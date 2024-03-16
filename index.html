@@ -1,114 +1,246 @@
-<html>
-<style>
-.select2_cont{
-  padding: 20px;
-    display: inline-block;
-      width: 300px;
-}
-
-.select2{
-  width: 100%
-}
-
-.group{
-  width: 100%;
-  margin: 20px auto 20px auto;
-
-  vertical-align: middle;
-}
-.btn{
-  background: white;
-  border-style: solid;
-  border-width: 1px;
-  margin: 5px;
-  padding: 5px;
-  font: 15px sans-serif;
-}
-
-.btn.checked{
-  background: grey;
-}
-
-html {
-  display: table;
-  width: 100%;
-}
-body{
-  width: 80%;
-  text-align: center;
-  display: table-cell;
-  margin: 0 auto;
-}
-
-.axis text{
-  font: 10px sans-serif;
-}
-
-.axis path,
-.axis line{
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.tick text{
-  font-size: 10px;
-}
-
-.tick line{
-  opacity: 0.2;
-}
-
-.merchant path{
-  fill: none;
-  stroke-width: 5px;
-}
-
-text{ 
-  font: 15px sans-serif;
-}
-text.m_name{
-  font: 15px sans-serif;
-}
-
-</style>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-<!--<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yahia Elgamal - Personal Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333333;
+        }
 
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        header {
+            background-color: #a5a5a5; /* Light grey background */
+            color: #333333; /* Dark grey text color */
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 0px solid #ddd; /* Add a light border */
+        }
 
-<link href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1-rc.1/css/select2.min.css" rel="stylesheet" />
-<script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1-rc.1/js/select2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.js"></script>
+
+        h1 {
+            margin: 0;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            background-color: #555;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffd700; /* change to desired hover color */
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: #333333;
+        }
+
+        footer {
+            background-color: #444;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            border-radius: 50%;
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .services {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .service {
+            width: calc(50% - 20px);
+            background-color: #eeeeee;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .service:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .service h3 {
+            margin-top: 0;
+        }
+
+        .service p {
+            margin-bottom: 0;
+        }
+/* 
+        #experience ul {
+            list-style-type: none;
+            padding: 0;
+        } */
+
+
+        #experience li>ul {
+            margin-bottom: 20px; 
+            padding-left: 20px;
+        } 
+    </style>
 </head>
+
 <body>
-  <div class='select2_cont'>
-    <select id='merchant1' class='select2'> </select>
-  </div>
 
-  <div class='select2_cont'>
-    <select id='merchant2' class='select2'> </select>
-  </div>
+    <header>
+        <img src="images/profile.jpeg" alt="Yahia Elgamal">
+        <h1>Yahia Elgamal</h1>
+        <p>Machine Learning Engineer</p>
+    </header>
 
-  <div class='group'>
-    <a class='btn checked' id='Sum'> Sum </a>
-    <a class='btn' id='Count'> Count </a>
-    <a class='btn' id='Average'> Average </a>
-    <a class='btn' id='Customers'> Customers </a>
-  </div>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        <a href="#interests">Interests</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-  <br>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I am a passionate machine learning engineer with a proven track record
+             of developing and deploying cutting-edge machine learning models 
+             at massive scale. Throughout my career, I have had the privilege of 
+             working with some of the world's leading companies, including Meta, 
+             Twitter, Spotify, and booking.com, where I've played a pivotal role 
+             in shaping the future of AI.
+        </p>
+        <p>My interests lie in building robust and continuously improving 
+            machine learning systems with a strong emphasis on safety and 
+            alignment. I am deeply committed to researching AI alignment, 
+            ensuring that our advancements in AI technology are not only 
+            groundbreaking but also ethical and beneficial for humanity. I am 
+            driven by the opportunity to contribute positively to this field 
+            and make a meaningful impact on the world.
+        </p>
 
-  <div id='main_plot'>
-    <svg id='main'></svg>
-  </div>
-  <div id='agg_plots'>
-    <svg id='agg1'></svg>
-    <svg id='agg2'></svg>
-    <svg id='agg3'></svg>
-  </div>
+    </section>
+
+    <section id="experience">
+        <h2>Experience</h2>
+        <ul>
+            <li>
+                <strong>Spotify, Senior Machine Learning Engineer, London, UK</strong><br>
+                Sep 2023 - Present<br>
+                <ul>
+                    <li>Led cutting-edge hate speech detection signal development in production, ensuring continuous performance improvement through human-in-the-loop measurements and active learning. Increased precision of hate detection by more than 4 folds.</li>
+                    <li>Established robust ML training, evaluation, and inference pipelines for Violative content detection in Podcasts, leveraging a diverse range of techniques, including LLMs, fine-tuning, and RAG.</li>
+                    <li>Tech: PyTorch, Distributed training, CUDA, LLMs, fine-tuning</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Twitter, Senior Machine Learning Engineer, London, UK</strong><br>
+                Apr 2022 - Feb 2023<br>
+                <ul>
+                    <li>Managed and led two critical work streams with a primary focus on optimizing Entities Sparse Representations and enhancing the overall Health of recommendations.</li>
+                    <li>Retrieval system leveraged Approximate Nearest Neighbour at scale.</li>
+                    <li>Implemented advanced techniques to enhance spam filtering for recommended tweets, resulting in over a 15% reduction in user-reported spam incidents.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Facebook, Senior Research Data Scientist, London, UK</strong><br>
+                Nov 2018 - Nov 2021<br>
+                <ul>
+                    <li>Led the design and execution of Measurement and Data Augmentation Strategy for a high-profile automated enforcement system, resulting in substantial reduction of harmful content on the platform.</li>
+                    <li>Designed and led the execution of a Human-in-the-Loop experimentation platform for similarity detection system, powered and validated by a content moderation workforce.</li>
+                    <li>Redesigned and led the launch of a new monitoring scheme and a more optimal sampling scheme for client-side logging.</li>
+                    <li>Optimized prefetching using cache efficiency simulations and ML models for predictive caching.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Booking.com, Data Scientist ML, Amsterdam, NL</strong><br>
+                Sep 2016 - Oct 2018<br>
+                <ul>
+                    <li>Worked with over 20 teams on personalization and building different production-ready ML models for customer-facing products, including recommendations and relevance.</li>
+                    <li>Co-led Machine Learning in Product 3-year roadmap.</li>
+                    <li>Co-Instructed Machine Learning class for one year.</li>
+                    <li>Consistently generated successful ML-based experiments that increased conversion.</li>
+                    <li>Mentored 3 Data Scientists from their early stages of their onboarding process.</li>
+                    <li>Tech: Python, SQL, H2O, Scikit, Pandas, R</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+            <li>Project 1: Developed a sentiment analysis model for social media data.</li>
+            <li>Project 2: Implemented a computer vision system for object detection in autonomous vehicles.</li>
+            <li>Project 3: Created a recommendation system for personalized content delivery.</li>
+        </ul>
+    </section>
+
+    <section id="services">
+        <h2>Services</h2>
+        <div class="services">
+            <div class="service">
+                <h3>Interview Coaching</h3>
+                <p>Prepare for your next job interview with personalized coaching sessions tailored to your needs.</p>
+            </div>
+            <div class="service">
+                <h3>Consulting</h3>
+                <p>Get expert advice and guidance on machine learning projects, from problem formulation to model deployment.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="interests">
+        <h2>Interests</h2>
+        <p>
+            I enjoy exploring new technologies, reading research papers.
+            Outside tech, I enjoy play squash, cycling
+        </p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Email: [firstname][lastname]@example.com</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Yahia Elgamal - All rights reserved</p>
+    </footer>
+
 </body>
-<script type='text/javascript' charset='utf-8' src='./merch.js'></script>
+
 </html>
