@@ -10,17 +10,17 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
-            color: #333333;
+            background-color: #C8D2D2 ;
+            color: #6F8384
         }
 
-        header {
-            background-color: #a5a5a5; /* Light grey background */
-            color: #333333; /* Dark grey text color */
+        /* header {
+            background-color: #a5a5a5;
+            color: #333333;
             padding: 20px 0;
             text-align: center;
-            border-bottom: 0px solid #ddd; /* Add a light border */
-        }
+            border-bottom: 0px solid #ddd;
+        } */
 
 
         h1 {
@@ -30,14 +30,14 @@
         }
 
         nav {
-            background-color: #555;
+            background-color: #56676D;
             color: #ffffff;
             padding: 10px 0;
             text-align: center;
         }
 
         nav a {
-            color: #ffffff;
+            color: #E8EEEE;
             text-decoration: none;
             margin: 0 10px;
             font-size: 18px;
@@ -51,10 +51,11 @@
         section {
             padding: 20px;
             margin: 20px;
-            background-color: #ffffff;
+            /* background-color: #ffffff; */
+            background-color: #F0F1F3;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            color: #333333;
+            /* color: #333333; */
         }
 
         footer {
@@ -67,14 +68,31 @@
             width: 100%;
         }
 
-        img {
+        img.profile-image {
             display: block;
             margin: 0 auto;
             border-radius: 50%;
             max-width: 200px;
             height: auto;
             margin-bottom: 20px;
+            /* position: 'absolute' */
         }
+
+        .header-container {
+            background-color: #a5a5a5;
+            color: #4A5A61;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 0px solid #ddd;  */
+            position: absolute;
+            width: 100%;
+            height: 300px;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+            background-image: url('images/header.jpeg'), linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+            background-size: cover;
+            background-position: center;
+        }
+
 
         .services {
             display: flex;
@@ -85,7 +103,7 @@
 
         .service {
             width: calc(50% - 20px);
-            background-color: #eeeeee;
+            background-color: #d2dade;
             border-radius: 5px;
             padding: 20px;
             margin-bottom: 20px;
@@ -104,7 +122,7 @@
         .service p {
             margin-bottom: 0;
         }
-/* 
+/*
         #experience ul {
             list-style-type: none;
             padding: 0;
@@ -112,18 +130,19 @@
 
 
         #experience li>ul {
-            margin-bottom: 20px; 
+            margin-bottom: 20px;
             padding-left: 20px;
-        } 
+        }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <img src="images/profile.jpeg" alt="Yahia Elgamal">
+    <header class="header-container">
+        <!-- <img src="images/header.jpeg" alt="Yahia Elgamal", class="header-image"> -->
+        <img src="images/profile.jpeg" alt="Yahia Elgamal", class="profile-image">
         <h1>Yahia Elgamal</h1>
-        <p>Machine Learning Engineer</p>
+        <p>Machine Learning Engineer and Researcher</p>
     </header>
 
     <nav>
@@ -137,18 +156,19 @@
     <section id="about">
         <h2>About Me</h2>
         <p>I am a passionate machine learning engineer with a proven track record
-             of developing and deploying cutting-edge machine learning models 
-             at massive scale. Throughout my career, I have had the privilege of 
-             working with some of the world's leading companies, including Meta, 
-             Twitter, Spotify, and booking.com, where I have contributed to users'
-            interactions with AI systems.
+             of developing and deploying cutting-edge machine learning models
+             at massive scale. Throughout my career, I have had the privilege of
+             working with some of the world's leading companies, including <b>Meta</b>,
+             <b>Twitter</b>, <b>Spotify</b>, and <b>Booking.com</b>, where I built
+             various Machine Learning and AI systems.
         </p>
-        <p>My interests lie in building robust and continuously improving 
-            machine learning systems with a strong emphasis on safety and 
-            alignment. I am deeply committed to researching AI alignment, 
-            ensuring that our advancements in AI technology are not only 
-            groundbreaking but also ethical and beneficial for humanity. I am 
-            driven by the opportunity to contribute positively to this field 
+        <p>
+            My interests lie in building robust and continuously improving
+            machine learning systems with a strong emphasis on safety and
+            alignment. I am deeply committed to researching AI alignment,
+            ensuring that our advancements in AI technology are not only
+            groundbreaking but also ethical and beneficial for humanity. I am
+            driven by the opportunity to contribute positively to this field
             and make a meaningful impact on the world.
         </p>
 
@@ -163,7 +183,7 @@
                 <ul>
                     <li>Led cutting-edge hate speech detection signal development in production, ensuring continuous performance improvement through human-in-the-loop measurements and active learning. Increased precision of hate detection by more than 4 folds.</li>
                     <li>Established robust ML training, evaluation, and inference pipelines for Violative content detection in Podcasts, leveraging a diverse range of techniques, including LLMs, fine-tuning, and RAG.</li>
-                    <li>Tech: PyTorch, Distributed training, CUDA, LLMs, fine-tuning</li>
+                    <li>Tech: PyTorch, Distributed training, LLMs, fine-tuning</li>
                 </ul>
             </li>
             <li>
@@ -230,12 +250,9 @@
 
     <section id="contact">
         <h2>Contact Me</h2>
-        <p>Email: [firstname][lastname]@example.com</p>
+        <p>Email: [firstname][lastname]@gmail.com</p>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Yahia Elgamal - All rights reserved</p>
-    </footer>
 
 </body>
 
