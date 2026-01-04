@@ -539,7 +539,7 @@ p {
 }
 
 .testimonial-quote::before {
-    content: """;
+    content: "\201C";
     font-size: 4rem;
     color: var(--accent-primary);
     line-height: 0;
