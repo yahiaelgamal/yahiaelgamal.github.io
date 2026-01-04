@@ -1,259 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yahia Elgamal - Personal Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #C8D2D2 ;
-            color: #6F8384
-        }
+    <meta name="description" content="ML Engineering Manager at Spotify offering expert coaching for FAANG interviews, technical mentorship, and resume reviews. 5.0 rating, 1,000+ resumes reviewed.">
+    <meta name="keywords" content="ML interview coaching, FAANG interview prep, ML system design, resume review, career coaching, data science mentorship">
+    <meta name="author" content="Yahia Elgamal">
 
-        /* header {
-            background-color: #a5a5a5;
-            color: #333333;
-            padding: 20px 0;
-            text-align: center;
-            border-bottom: 0px solid #ddd;
-        } */
+    <!-- Open Graph -->
+    <meta property="og:title" content="Yahia Elgamal - ML Interview Coaching & Career Mentorship">
+    <meta property="og:description" content="Transform your tech career with expert coaching from an ML Engineering Manager at Spotify. 5.0 rating, SuperCoach on igotanoffer.">
+    <meta property="og:image" content="https://yahiaelgamal.github.io/images/profile.jpeg">
+    <meta property="og:url" content="https://yahiaelgamal.github.io">
+    <meta property="og:type" content="website">
 
+    <title>Yahia Elgamal - ML Interview Coaching & Career Mentorship | Spotify | 5.0 Rating</title>
 
-        h1 {
-            margin: 0;
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        nav {
-            background-color: #56676D;
-            color: #ffffff;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        nav a {
-            color: #E8EEEE;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 18px;
-            transition: all 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #ffd700; /* change to desired hover color */
-        }
-
-        section {
-            padding: 20px;
-            margin: 20px;
-            /* background-color: #ffffff; */
-            background-color: #F0F1F3;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            /* color: #333333; */
-        }
-
-        footer {
-            background-color: #444;
-            color: #ffffff;
-            padding: 10px 0;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        img.profile-image {
-            display: block;
-            margin: 0 auto;
-            border-radius: 50%;
-            max-width: 200px;
-            height: auto;
-            margin-bottom: 20px;
-            /* position: 'absolute' */
-        }
-
-        .header-container {
-            background-color: #a5a5a5;
-            color: #4A5A61;
-            padding: 20px 0;
-            text-align: center;
-            border-bottom: 0px solid #ddd;  */
-            position: absolute;
-            width: 100%;
-            height: 300px;
-            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-            background-image: url('images/header.jpeg'), linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-            background-size: cover;
-            background-position: center;
-        }
-
-
-        .services {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .service {
-            width: calc(50% - 20px);
-            background-color: #d2dade;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .service:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .service h3 {
-            margin-top: 0;
-        }
-
-        .service p {
-            margin-bottom: 0;
-        }
-/*
-        #experience ul {
-            list-style-type: none;
-            padding: 0;
-        } */
-
-
-        #experience li>ul {
-            margin-bottom: 20px;
-            padding-left: 20px;
-        }
-    </style>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-
-    <header class="header-container">
-        <!-- <img src="images/header.jpeg" alt="Yahia Elgamal", class="header-image"> -->
-        <img src="images/profile.jpeg" alt="Yahia Elgamal", class="profile-image">
-        <h1>Yahia Elgamal</h1>
-        <p>Machine Learning Engineer and Researcher</p>
-    </header>
-
-    <nav>
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#services">Services</a>
-        <a href="#interests">Interests</a>
-        <a href="#contact">Contact</a>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Yahia Elgamal</a>
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a href="https://igotanoffer.com/en/coach/yahia" class="nav-cta-btn" target="_blank">Book a Session</a>
+        </div>
     </nav>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>I am a passionate machine learning engineer with a proven track record
-             of developing and deploying cutting-edge machine learning models
-             at massive scale. Throughout my career, I have had the privilege of
-             working with some of the world's leading companies, including <b>Meta</b>,
-             <b>Twitter</b>, <b>Spotify</b>, and <b>Booking.com</b>, where I built
-             various Machine Learning and AI systems.
-        </p>
-        <p>
-            My interests lie in building robust and continuously improving
-            machine learning systems with a strong emphasis on safety and
-            alignment. I am deeply committed to researching AI alignment,
-            ensuring that our advancements in AI technology are not only
-            groundbreaking but also ethical and beneficial for humanity. I am
-            driven by the opportunity to contribute positively to this field
-            and make a meaningful impact on the world.
-        </p>
-
-    </section>
-
-    <section id="experience">
-        <h2>Experience</h2>
-        <ul>
-            <li>
-                <strong>Spotify, Senior Machine Learning Engineer, London, UK</strong><br>
-                Sep 2023 - Present<br>
-                <ul>
-                    <li>Led cutting-edge hate speech detection signal development in production, ensuring continuous performance improvement through human-in-the-loop measurements and active learning. Increased precision of hate detection by more than 4 folds.</li>
-                    <li>Established robust ML training, evaluation, and inference pipelines for Violative content detection in Podcasts, leveraging a diverse range of techniques, including LLMs, fine-tuning, and RAG.</li>
-                    <li>Tech: PyTorch, Distributed training, LLMs, fine-tuning</li>
-                </ul>
-            </li>
-            <li>
-                <strong>Twitter, Senior Machine Learning Engineer, London, UK</strong><br>
-                Apr 2022 - Feb 2023<br>
-                <ul>
-                    <li>Managed and led two critical work streams with a primary focus on optimizing Entities Sparse Representations and enhancing the overall Health of recommendations.</li>
-                    <li>Retrieval system leveraged Approximate Nearest Neighbour at scale.</li>
-                    <li>Implemented advanced techniques to enhance spam filtering for recommended tweets, resulting in over a 15% reduction in user-reported spam incidents.</li>
-                </ul>
-            </li>
-            <li>
-                <strong>Facebook, Senior Research Data Scientist, London, UK</strong><br>
-                Nov 2018 - Nov 2021<br>
-                <ul>
-                    <li>Led the design and execution of Measurement and Data Augmentation Strategy for a high-profile automated enforcement system, resulting in substantial reduction of harmful content on the platform.</li>
-                    <li>Designed and led the execution of a Human-in-the-Loop experimentation platform for similarity detection system, powered and validated by a content moderation workforce.</li>
-                    <li>Redesigned and led the launch of a new monitoring scheme and a more optimal sampling scheme for client-side logging.</li>
-                    <li>Optimized prefetching using cache efficiency simulations and ML models for predictive caching.</li>
-                </ul>
-            </li>
-            <li>
-                <strong>Booking.com, Data Scientist ML, Amsterdam, NL</strong><br>
-                Sep 2016 - Oct 2018<br>
-                <ul>
-                    <li>Worked with over 20 teams on personalization and building different production-ready ML models for customer-facing products, including recommendations and relevance.</li>
-                    <li>Co-led Machine Learning in Product 3-year roadmap.</li>
-                    <li>Co-Instructed Machine Learning class for one year.</li>
-                    <li>Consistently generated successful ML-based experiments that increased conversion.</li>
-                    <li>Mentored 3 Data Scientists from their early stages of their onboarding process.</li>
-                    <li>Tech: Python, SQL, H2O, Scikit, Pandas, R</li>
-                </ul>
-            </li>
-        </ul>
-    </section>
-
-    <section id="services">
-        <h2>Services</h2>
-        <div class="services">
-            <div class="service">
-                <h3>Consulting</h3>
-                <p>Get expert advice and guidance on machine learning projects, from problem formulation to model deployment.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">⭐ SuperCoach | 5.0 Rating | Top 25%</div>
+            <h1 class="hero-title">Transform Your Tech Career with Expert Coaching</h1>
+            <p class="hero-subtitle">
+                ML Engineering Manager at Spotify. 1,000+ resumes reviewed.
+                50+ FAANG interviews conducted. Specialized in ML system design & career acceleration.
+            </p>
+            <div class="hero-cta-group">
+                <a href="https://igotanoffer.com/en/coach/yahia" class="cta-primary" target="_blank">
+                    Book Your Session
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="#services" class="cta-secondary">Explore Services</a>
             </div>
-            <div class="service">
-                <h3>Interview Coaching</h3>
-                <p>Prepare for your next job interview with personalized coaching sessions tailored to your needs.</p>
+            <div class="hero-social-proof">
+                <div class="proof-item">
+                    <span class="proof-number">1,000+</span>
+                    <span class="proof-label">Resumes Reviewed</span>
+                </div>
+                <div class="proof-item">
+                    <span class="proof-number">50+</span>
+                    <span class="proof-label">Interviews Conducted</span>
+                </div>
+                <div class="proof-item">
+                    <span class="proof-number">5.0</span>
+                    <span class="proof-label">⭐⭐⭐⭐⭐ Rating</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="images/profile.jpeg" alt="Yahia Elgamal - ML Engineering Manager at Spotify" class="profile-img" loading="eager">
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2 class="section-title">How I Can Help You</h2>
+            <p class="section-subtitle">Tailored coaching for ML engineers, data scientists, and tech leaders</p>
+        </div>
+
+        <div class="services-grid">
+            <!-- Service Card 1: Interview Coaching -->
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3 class="service-title">Interview Coaching</h3>
+                <p class="service-description">
+                    Master FAANG interviews with personalized coaching in ML system design,
+                    behavioral questions, and coding challenges.
+                </p>
+                <ul class="service-features">
+                    <li>ML system design deep dives</li>
+                    <li>Behavioral interview frameworks</li>
+                    <li>Real interview questions from Meta, Google, Amazon</li>
+                    <li>Mock interviews with detailed feedback</li>
+                </ul>
+                <div class="service-meta">
+                    <span class="service-badge">Most Popular</span>
+                    <span class="service-experience">50+ interviews conducted</span>
+                </div>
+                <a href="https://igotanoffer.com/en/coach/yahia" class="service-cta" target="_blank">Book Interview Prep →</a>
+            </div>
+
+            <!-- Service Card 2: Technical Mentorship -->
+            <div class="service-card">
+                <div class="service-icon">💡</div>
+                <h3 class="service-title">Technical Mentorship</h3>
+                <p class="service-description">
+                    Level up your technical skills with guidance on Python, ML, LLM fine-tuning,
+                    and production ML systems.
+                </p>
+                <ul class="service-features">
+                    <li>ML system architecture & design patterns</li>
+                    <li>LLM fine-tuning & prompt engineering</li>
+                    <li>ML observability & monitoring</li>
+                    <li>Career growth strategy</li>
+                </ul>
+                <div class="service-meta">
+                    <span class="service-experience">Spotify, Meta, Twitter experience</span>
+                </div>
+                <a href="https://igotanoffer.com/en/coach/yahia" class="service-cta" target="_blank">Start Mentorship →</a>
+            </div>
+
+            <!-- Service Card 3: Resume Review -->
+            <div class="service-card">
+                <div class="service-icon">📄</div>
+                <h3 class="service-title">Resume Review</h3>
+                <p class="service-description">
+                    Get your resume noticed by top tech companies. Expert feedback from
+                    someone who's reviewed 1,000+ ML/backend engineer resumes.
+                </p>
+                <ul class="service-features">
+                    <li>ATS optimization for tech companies</li>
+                    <li>Impact-driven bullet points</li>
+                    <li>ML project showcase strategy</li>
+                    <li>LinkedIn profile optimization</li>
+                </ul>
+                <div class="service-meta">
+                    <span class="service-badge">Quick Turnaround</span>
+                    <span class="service-experience">1,000+ resumes reviewed</span>
+                </div>
+                <a href="https://igotanoffer.com/en/coach/yahia" class="service-cta" target="_blank">Get Resume Feedback →</a>
+            </div>
+        </div>
+
+        <!-- CTA Banner -->
+        <div class="services-cta-banner">
+            <h3>Ready to accelerate your tech career?</h3>
+            <p>Book a 1-hour session for 3 credits ($120-$150)</p>
+            <a href="https://igotanoffer.com/en/coach/yahia" class="cta-primary" target="_blank">Book Your Session Now</a>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-header">
+            <h2 class="section-title">What Clients Say</h2>
+            <div class="testimonials-rating">
+                <div class="rating-stars">⭐⭐⭐⭐⭐</div>
+                <span class="rating-text">5.0 / 5.0 (10 reviews on igotanoffer)</span>
+            </div>
+        </div>
+
+        <div class="testimonials-grid">
+            <!-- Testimonial Card 1 -->
+            <div class="testimonial-card">
+                <div class="testimonial-quote">
+                    "Yahia quickly identified a clear set of weaknesses that weren't obvious to me at all."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <span class="author-name">Engineering Manager</span>
+                        <span class="author-role">Career Transition</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial Card 2 -->
+            <div class="testimonial-card">
+                <div class="testimonial-quote">
+                    "His guidance, along with the thoughtful practice questions, made a real difference."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <span class="author-name">ML Engineer</span>
+                        <span class="author-role">Interview Preparation</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial Card 3 -->
+            <div class="testimonial-card">
+                <div class="testimonial-quote">
+                    "He gave me information on how to prepare for the interviews and helped me find my career direction."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <span class="author-name">Data Scientist</span>
+                        <span class="author-role">Career Coaching</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+            <div class="badge">
+                <span class="badge-stat">SuperCoach</span>
+                <span>Top 25%</span>
+            </div>
+            <div class="badge">
+                <span class="badge-stat">21%</span>
+                <span>Rebook Rate</span>
+            </div>
+            <div class="badge">
+                <span class="badge-stat">23</span>
+                <span>Happy Clients</span>
             </div>
         </div>
     </section>
 
-    <section id="interests">
-        <h2>Interests</h2>
-        <p>
-            <ul>
-                <li> ML Systems monitoring </li>
-                <li> AI Alignment </li>
-                <li> LLM Safety </li>
-                <li> Model debug-ability and interpretability  </li>
-                <li> Human-in-the-loop systems </li>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2 class="section-title">About Yahia</h2>
+                <p class="about-intro">
+                    ML Engineering Manager at Spotify with a track record of building
+                    production ML systems at the world's leading tech companies.
+                </p>
 
-            </ul>
-        </p>
+                <div class="about-experience">
+                    <h3>Experience Highlights</h3>
+                    <div class="experience-timeline">
+                        <div class="timeline-item">
+                            <span class="company-logo">🎵</span>
+                            <div class="timeline-content">
+                                <strong>Spotify</strong> - ML Engineering Manager
+                                <p>Led hate speech detection, 4x precision improvement</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="company-logo">𝕏</span>
+                            <div class="timeline-content">
+                                <strong>X (Twitter)</strong> - Senior ML Engineer
+                                <p>Optimized recommendation systems, reduced spam 15%</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="company-logo">👥</span>
+                            <div class="timeline-content">
+                                <strong>Meta</strong> - Senior Research Data Scientist
+                                <p>Content moderation systems, human-in-the-loop ML</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="company-logo">🏨</span>
+                            <div class="timeline-content">
+                                <strong>Booking.com</strong> - Data Scientist ML
+                                <p>Personalization, recommendations, 20+ teams</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-expertise">
+                    <h3>Areas of Expertise</h3>
+                    <div class="expertise-tags">
+                        <span class="tag">ML System Design</span>
+                        <span class="tag">LLM Fine-tuning</span>
+                        <span class="tag">Career Transitions</span>
+                        <span class="tag">Interview Prep</span>
+                        <span class="tag">Python/PyTorch</span>
+                        <span class="tag">ML Observability</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-image">
+                <img src="images/profile.jpeg" alt="Yahia Elgamal - Professional Coach" loading="lazy">
+            </div>
+        </div>
     </section>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Email: [firstname][lastname]@gmail.com</p>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Let's Work Together</h2>
+            <p class="contact-intro">
+                Ready to take your tech career to the next level? Book a session
+                and let's build your path to success.
+            </p>
+
+            <div class="contact-options">
+                <div class="contact-primary">
+                    <a href="https://igotanoffer.com/en/coach/yahia" class="cta-primary-large" target="_blank">
+                        Book a Session on igotanoffer
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <p class="contact-note">1-hour sessions | 3 credits ($120-$150)</p>
+                </div>
+
+                <div class="contact-divider">
+                    <span>or</span>
+                </div>
+
+                <div class="contact-email">
+                    <p>Have questions? Reach out via email:</p>
+                    <a href="mailto:yahiaelgamal@gmail.com" class="email-link">
+                        yahiaelgamal@gmail.com
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Yahia Elgamal. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://igotanoffer.com/en/coach/yahia" target="_blank">igotanoffer Profile</a>
+                <a href="https://linkedin.com/in/yahiaelgamal" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
 
+    <!-- Scripts -->
+    <script src="script.js"></script>
 </body>
-
 </html>
