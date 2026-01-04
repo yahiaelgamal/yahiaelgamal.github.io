@@ -2,7 +2,7 @@
    CSS Variables - Theme Colors
    ========================================== */
 :root {
-    /* Light theme (default) */
+    /* Light theme */
     --bg-primary: #FAFBFC;
     --bg-surface: #FFFFFF;
     --bg-alt: #F5F7FA;
@@ -27,6 +27,8 @@
     --cta-banner-text: #667eea;
 }
 
+/* Dark theme - Uncomment to enable system-based theme switching */
+/*
 @media (prefers-color-scheme: dark) {
     :root {
         --bg-primary: #0F1419;
@@ -53,6 +55,7 @@
         --cta-banner-text: #E8EAED;
     }
 }
+*/
 
 /* ==========================================
    CSS Reset & Base Styles
