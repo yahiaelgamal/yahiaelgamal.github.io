@@ -1,4 +1,60 @@
 /* ==========================================
+   CSS Variables - Theme Colors
+   ========================================== */
+:root {
+    /* Light theme (default) */
+    --bg-primary: #FAFBFC;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F5F7FA;
+    --text-primary: #2C3E50;
+    --text-secondary: #6B7B8C;
+    --accent-primary: #4A90E2;
+    --accent-hover: #357ABD;
+    --accent-success: #27AE60;
+    --accent-warning: #FFB800;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.05);
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --gradient-hero: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+    --gradient-cta: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+    --shadow-cta: 0 4px 20px rgba(74, 144, 226, 0.3);
+    --shadow-cta-hover: 0 6px 24px rgba(74, 144, 226, 0.4);
+    --profile-border: white;
+    --footer-bg: #2C3E50;
+    --cta-banner-text: #667eea;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #0F1419;
+        --bg-surface: #1A1F2E;
+        --bg-alt: #161B26;
+        --text-primary: #E8EAED;
+        --text-secondary: #9BA3AF;
+        --accent-primary: #5BA3F5;
+        --accent-hover: #4A90E2;
+        --accent-success: #34D399;
+        --accent-warning: #FCD34D;
+        --glass-bg: rgba(26, 31, 46, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --nav-bg: rgba(15, 20, 25, 0.9);
+        --gradient-hero: linear-gradient(135deg, rgba(91, 163, 245, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+        --gradient-cta: linear-gradient(135deg, #5BA3F5 0%, #8B5CF6 100%);
+        --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.4);
+        --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.6);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+        --shadow-cta: 0 4px 20px rgba(91, 163, 245, 0.3);
+        --shadow-cta-hover: 0 6px 24px rgba(91, 163, 245, 0.4);
+        --profile-border: rgba(255, 255, 255, 0.1);
+        --footer-bg: #161B26;
+        --cta-banner-text: #E8EAED;
+    }
+}
+
+/* ==========================================
    CSS Reset & Base Styles
    ========================================== */
 *, *::before, *::after {
@@ -14,11 +70,12 @@ html {
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    color: #2C3E50;
-    background-color: #FAFBFC;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ==========================================
@@ -54,10 +111,10 @@ p {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--nav-bg);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid var(--glass-border);
     padding: 16px 0;
 }
 
@@ -73,13 +130,13 @@ p {
 .nav-logo {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #2C3E50;
+    color: var(--text-primary);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .nav-logo:hover {
-    color: #4A90E2;
+    color: var(--accent-primary);
 }
 
 .nav-links {
@@ -88,18 +145,18 @@ p {
 }
 
 .nav-links a {
-    color: #6B7B8C;
+    color: var(--text-secondary);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-    color: #4A90E2;
+    color: var(--accent-primary);
 }
 
 .nav-cta-btn {
-    background: #4A90E2;
+    background: var(--accent-primary);
     color: white;
     padding: 12px 24px;
     border-radius: 8px;
@@ -109,7 +166,7 @@ p {
 }
 
 .nav-cta-btn:hover {
-    background: #357ABD;
+    background: var(--accent-hover);
     transform: scale(1.02);
 }
 
@@ -123,7 +180,7 @@ p {
     gap: 48px;
     align-items: center;
     padding: 96px 24px;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+    background: var(--gradient-hero);
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -146,7 +203,7 @@ p {
 
 .hero-badge {
     display: inline-block;
-    background: #27AE60;
+    background: var(--accent-success);
     color: white;
     padding: 8px 16px;
     border-radius: 24px;
@@ -157,12 +214,12 @@ p {
 
 .hero-title {
     margin-bottom: 24px;
-    color: #2C3E50;
+    color: var(--text-primary);
 }
 
 .hero-subtitle {
     font-size: 1.25rem;
-    color: #6B7B8C;
+    color: var(--text-secondary);
     margin-bottom: 32px;
 }
 
@@ -181,7 +238,7 @@ p {
 }
 
 .cta-primary {
-    background: #4A90E2;
+    background: var(--accent-primary);
     color: white;
     padding: 16px 32px;
     border-radius: 8px;
@@ -192,20 +249,20 @@ p {
     align-items: center;
     gap: 8px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 20px rgba(74, 144, 226, 0.3);
+    box-shadow: var(--shadow-cta);
 }
 
 .cta-primary:hover {
-    background: #357ABD;
+    background: var(--accent-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(74, 144, 226, 0.4);
+    box-shadow: var(--shadow-cta-hover);
 }
 
 .cta-secondary {
     background: transparent;
-    color: #4A90E2;
+    color: var(--accent-primary);
     padding: 16px 32px;
-    border: 2px solid #4A90E2;
+    border: 2px solid var(--accent-primary);
     border-radius: 8px;
     font-weight: 600;
     font-size: 1.125rem;
@@ -216,7 +273,7 @@ p {
 }
 
 .cta-secondary:hover {
-    background: #4A90E2;
+    background: var(--accent-primary);
     color: white;
 }
 
@@ -234,13 +291,13 @@ p {
     display: block;
     font-size: 2rem;
     font-weight: 700;
-    color: #4A90E2;
+    color: var(--accent-primary);
 }
 
 .proof-label {
     display: block;
     font-size: 0.875rem;
-    color: #6B7B8C;
+    color: var(--text-secondary);
 }
 
 .hero-image {
@@ -253,8 +310,8 @@ p {
     width: 100%;
     max-width: 400px;
     border-radius: 50%;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    border: 4px solid white;
+    box-shadow: var(--shadow-lg);
+    border: 4px solid var(--profile-border);
 }
 
 /* ==========================================
@@ -262,7 +319,7 @@ p {
    ========================================== */
 .services {
     padding: 96px 24px;
-    background: white;
+    background: var(--bg-surface);
 }
 
 .section-header {
@@ -271,13 +328,13 @@ p {
 }
 
 .section-title {
-    color: #2C3E50;
+    color: var(--text-primary);
     margin-bottom: 16px;
 }
 
 .section-subtitle {
     font-size: 1.25rem;
-    color: #6B7B8C;
+    color: var(--text-secondary);
 }
 
 .services-grid {
@@ -301,19 +358,19 @@ p {
 }
 
 .service-card {
-    background: rgba(255, 255, 255, 0.7);
+    background: var(--glass-bg);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--glass-border);
     border-radius: 12px;
     padding: 32px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-sm);
 }
 
 .service-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--shadow-md);
 }
 
 .service-icon {
@@ -323,11 +380,11 @@ p {
 
 .service-title {
     margin-bottom: 16px;
-    color: #2C3E50;
+    color: var(--text-primary);
 }
 
 .service-description {
-    color: #6B7B8C;
+    color: var(--text-secondary);
     margin-bottom: 24px;
 }
 
@@ -340,14 +397,14 @@ p {
     padding-left: 24px;
     position: relative;
     margin-bottom: 8px;
-    color: #6B7B8C;
+    color: var(--text-secondary);
 }
 
 .service-features li::before {
     content: "✓";
     position: absolute;
     left: 0;
-    color: #27AE60;
+    color: var(--accent-success);
     font-weight: bold;
 }
 
@@ -357,7 +414,7 @@ p {
 
 .service-badge {
     display: inline-block;
-    background: #27AE60;
+    background: var(--accent-success);
     color: white;
     padding: 4px 12px;
     border-radius: 12px;
@@ -368,12 +425,12 @@ p {
 
 .service-experience {
     font-size: 0.875rem;
-    color: #6B7B8C;
+    color: var(--text-secondary);
 }
 
 .service-cta {
     display: inline-block;
-    color: #4A90E2;
+    color: var(--accent-primary);
     font-weight: 600;
     text-decoration: none;
     transition: transform 0.2s ease;
@@ -384,13 +441,13 @@ p {
 }
 
 .services-cta-banner {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-cta);
     color: white;
     padding: 48px;
     border-radius: 16px;
     text-align: center;
     margin-top: 64px;
-    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+    box-shadow: var(--shadow-cta);
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
@@ -408,12 +465,12 @@ p {
 
 .services-cta-banner .cta-primary {
     background: white;
-    color: #667eea;
+    color: var(--cta-banner-text);
 }
 
 .services-cta-banner .cta-primary:hover {
-    background: #FAFBFC;
-    color: #764ba2;
+    background: var(--bg-alt);
+    color: var(--cta-banner-text);
 }
 
 /* ==========================================
@@ -421,7 +478,7 @@ p {
    ========================================== */
 .testimonials {
     padding: 96px 24px;
-    background: #F5F7FA;
+    background: var(--bg-alt);
 }
 
 .testimonials-rating {
@@ -433,12 +490,12 @@ p {
 }
 
 .rating-stars {
-    color: #FFB800;
+    color: var(--accent-warning);
     font-size: 1.5rem;
 }
 
 .rating-text {
-    color: #6B7B8C;
+    color: var(--text-secondary);
 }
 
 .testimonials-grid {
@@ -462,24 +519,24 @@ p {
 }
 
 .testimonial-card {
-    background: white;
+    background: var(--bg-surface);
     padding: 32px;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-sm);
 }
 
 .testimonial-quote {
     font-size: 1.125rem;
     line-height: 1.6;
     margin-bottom: 24px;
-    color: #2C3E50;
+    color: var(--text-primary);
     position: relative;
 }
 
 .testimonial-quote::before {
     content: """;
     font-size: 4rem;
-    color: #4A90E2;
+    color: var(--accent-primary);
     line-height: 0;
     display: block;
     margin-bottom: 16px;
@@ -489,12 +546,12 @@ p {
 .author-name {
     font-weight: 600;
     display: block;
-    color: #2C3E50;
+    color: var(--text-primary);
 }
 
 .author-role {
     font-size: 0.875rem;
-    color: #6B7B8C;
+    color: var(--text-secondary);
     display: block;
 }
 
@@ -514,7 +571,7 @@ p {
     display: block;
     font-size: 2rem;
     font-weight: 700;
-    color: #4A90E2;
+    color: var(--accent-primary);
     margin-bottom: 8px;
 }
 
@@ -523,7 +580,7 @@ p {
    ========================================== */
 .about {
     padding: 96px 24px;
-    background: white;
+    background: var(--bg-surface);
 }
 
 .about-content {
@@ -543,7 +600,7 @@ p {
 
 .about-intro {
     font-size: 1.25rem;
-    color: #6B7B8C;
+    color: var(--text-secondary);
     margin-bottom: 32px;
 }
 
@@ -551,7 +608,7 @@ p {
 .about-expertise h3 {
     font-size: 1.5rem;
     margin-bottom: 24px;
-    color: #2C3E50;
+    color: var(--text-primary);
 }
 
 .experience-timeline {
@@ -575,11 +632,11 @@ p {
     display: block;
     font-size: 1.125rem;
     margin-bottom: 4px;
-    color: #2C3E50;
+    color: var(--text-primary);
 }
 
 .timeline-content p {
-    color: #6B7B8C;
+    color: var(--text-secondary);
     font-size: 0.875rem;
     margin: 0;
 }
@@ -591,17 +648,17 @@ p {
 }
 
 .tag {
-    background: #F5F7FA;
+    background: var(--bg-alt);
     padding: 8px 16px;
     border-radius: 24px;
     font-size: 0.875rem;
-    color: #2C3E50;
+    color: var(--text-primary);
 }
 
 .about-image img {
     width: 100%;
     border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-lg);
 }
 
 /* ==========================================
@@ -609,7 +666,7 @@ p {
    ========================================== */
 .contact {
     padding: 96px 24px;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+    background: var(--gradient-hero);
     text-align: center;
 }
 
@@ -620,7 +677,7 @@ p {
 
 .contact-intro {
     font-size: 1.25rem;
-    color: #6B7B8C;
+    color: var(--text-secondary);
     margin-bottom: 48px;
 }
 
@@ -634,11 +691,11 @@ p {
 .contact-divider {
     margin: 16px 0;
     font-size: 0.875rem;
-    color: #6B7B8C;
+    color: var(--text-secondary);
 }
 
 .cta-primary-large {
-    background: #4A90E2;
+    background: var(--accent-primary);
     color: white;
     padding: 20px 48px;
     border-radius: 8px;
@@ -649,24 +706,24 @@ p {
     align-items: center;
     gap: 12px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 8px 32px rgba(74, 144, 226, 0.3);
+    box-shadow: var(--shadow-cta);
 }
 
 .cta-primary-large:hover {
-    background: #357ABD;
+    background: var(--accent-hover);
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(74, 144, 226, 0.4);
+    box-shadow: var(--shadow-cta-hover);
 }
 
 .contact-note {
     font-size: 0.875rem;
-    color: #6B7B8C;
+    color: var(--text-secondary);
     margin-top: 12px;
 }
 
 .email-link {
     font-size: 1.25rem;
-    color: #4A90E2;
+    color: var(--accent-primary);
     font-weight: 600;
     text-decoration: none;
 }
@@ -679,7 +736,7 @@ p {
    Footer
    ========================================== */
 .footer {
-    background: #2C3E50;
+    background: var(--footer-bg);
     color: white;
     padding: 32px 24px;
     text-align: center;
@@ -697,7 +754,7 @@ p {
 }
 
 .footer-links a {
-    color: #FAFBFC;
+    color: var(--bg-primary);
     text-decoration: none;
     opacity: 0.8;
     transition: opacity 0.2s ease;
