@@ -4,101 +4,87 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a personal portfolio website for Yahia Elgamal hosted on GitHub Pages. The repository contains a static HTML/CSS/JavaScript website showcasing professional experience, interests, and services in machine learning and AI.
+This is a coaching/portfolio landing page for Yahia Elgamal (ML Engineering Manager at Spotify), hosted on GitHub Pages. The site promotes interview coaching, technical mentorship, and resume review services via the igotanoffer platform. Pure HTML/CSS/JS with no build step.
 
 ## Architecture
 
-### Current Structure
+### File Structure
 
-The repository has two distinct website versions:
+```
+index.html    - Main landing page (single-page design)
+styles.css    - All styling (CSS variables, responsive, animations)
+script.js     - Hamburger menu, smooth scroll, IntersectionObserver reveals
+images/
+  profile.jpeg - Profile photo (used in hero + about sections)
+```
 
-1. **Active Site (Root Level)**
-   - `index.html` - Main portfolio page with custom styling (currently active)
-   - `images/` - Contains profile photo and header image
-   - Inline CSS with custom color scheme (#C8D2D2 background, #56676D navigation)
-   - Single-page design with sections: About, Experience, Services, Interests, Contact
+### Design System (CSS Variables in styles.css)
 
-2. **Alternative Template (new_template/)**
-   - HTML5 UP "Dimension" template - a modal-based single-page design
-   - `new_template/index.html` - Alternative portfolio with modal "pages"
-   - `new_template/assets/` - CSS, JavaScript (jQuery), and Font Awesome
-   - Not currently deployed but available for future use
+- Background: `#FAFBFC` (primary), `#FFFFFF` (surface), `#F5F7FA` (alt)
+- Text: `#2C3E50` (primary), `#6B7B8C` (secondary)
+- Accent: `#4A90E2` (primary blue), `#27AE60` (success green), `#FFB800` (warning)
+- Gradients: Blue-to-purple (`#667eea` to `#764ba2`)
+- Typography: Inter font, fluid sizing via `clamp()`
+- Effects: Glassmorphism (backdrop-filter blur), animated gradient orbs, CTA shimmer
+
+A dark theme is defined but commented out in styles.css (intentionally disabled).
+
+### Page Sections
+
+1. **Hero** - Headline, social proof stats, dual CTAs, profile image
+2. **Services** - 3 service cards (Interview Coaching, Technical Mentorship, Resume Review)
+3. **Testimonials** - Client quotes, 5.0 rating display, trust badges
+4. **About** - Experience timeline (Spotify, X/Twitter, Meta, Booking.com), expertise tags
+5. **Contact** - Primary CTA to igotanoffer, email fallback
+6. **Footer** - Copyright, igotanoffer profile link, LinkedIn
 
 ### Website Deployment
 
 - Hosted via GitHub Pages
 - Branch: `master`
-- URL pattern: `http://yahiaelgamal.github.io`
+- URL: `https://yahiaelgamal.github.io`
 - No build process required - direct HTML/CSS/JS deployment
 
 ## Common Commands
 
-### Git Operations
-```bash
-# View current status
-git status
-
-# Add and commit changes
-git add index.html
-# (use the git claude command to split and describe commits)
-git commit -m "Update portfolio content"
-
-# Push to GitHub Pages
-git push origin master
-```
-
 ### Local Development
 ```bash
-# Serve locally (Python 3)
 python3 -m http.server 8000
-
-# Serve locally (Python 2)
-python -m SimpleHTTPServer 8000
-
 # Then visit: http://localhost:8000
+```
+
+### Git Operations
+```bash
+git status
+git add index.html styles.css script.js
+git commit -m "Update portfolio content"
+git push origin master
 ```
 
 ## Key Files
 
-- `index.html` - Main portfolio page (root level, currently active)
-- `images/profile.jpeg` - Profile photo (200px circular display)
-- `images/header.jpeg` - Header background image
-- `new_template/index.html` - Alternative design template (not active)
+- `index.html` - Landing page with structured data (JSON-LD), Open Graph tags, semantic HTML
+- `styles.css` - ~950 lines: CSS variables, responsive breakpoints (768px, 1024px), animations
+- `script.js` - ~65 lines: hamburger menu toggle, smooth scroll, IntersectionObserver
+- `images/profile.jpeg` - Profile photo (170 KB, displayed circular in hero, rounded in about)
 
 ## Content Guidelines
 
 ### Experience Section
-Professional history includes roles at Spotify, Twitter, Meta (Facebook), and Booking.com. When updating experience entries, maintain the structure:
-- Company name, job title, location
-- Date range
-- Bulleted list of achievements/responsibilities
-- Technologies used (where applicable)
+Professional history: Spotify, X (Twitter), Meta, Booking.com. Each entry has company emoji, title, and brief description.
 
-### Color Scheme
-Current active site uses:
-- Background: `#C8D2D2`
-- Text: `#6F8384`
-- Navigation bar: `#56676D`
-- Navigation text: `#E8EEEE`
-- Hover accent: `#ffd700` (gold)
-- Section backgrounds: `#F0F1F3`
+### External Links
+All `target="_blank"` links must include `rel="noopener noreferrer"`.
 
 ### Contact Information
-Contact email follows pattern: `[firstname][lastname]@gmail.com`
-
-## Switching Templates
-
-To switch from current design to the HTML5 UP template:
-1. Backup current `index.html`: `mv index.html index_backup.html`
-2. Copy template: `cp new_template/index.html index.html`
-3. Copy assets: `cp -r new_template/assets .`
-4. Update content in modal sections
-5. Commit and push changes
+- Primary: igotanoffer coaching platform
+- Email: yahiaelgamal@gmail.com
 
 ## Notes
 
 - No build tools or dependencies required
 - No package.json or configuration files
 - Pure HTML/CSS/JavaScript stack
-- Images should be optimized before committing (large files in repo)
-- Template in `new_template/` is licensed under CCA 3.0 from HTML5 UP
+- Images should be optimized before committing
+- Mobile navigation uses a hamburger menu with fullscreen overlay
+- Accessibility: skip-nav link, focus-visible styles, ARIA labels on interactive elements

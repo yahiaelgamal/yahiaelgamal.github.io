@@ -58,6 +58,27 @@
 */
 
 /* ==========================================
+   Skip Navigation (Accessibility)
+   ========================================== */
+.skip-nav {
+    position: absolute;
+    top: -100%;
+    left: 16px;
+    background: var(--accent-primary);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 0 0 8px 8px;
+    z-index: 200;
+    text-decoration: none;
+    font-weight: 600;
+    transition: top 0.2s ease;
+}
+
+.skip-nav:focus {
+    top: 0;
+}
+
+/* ==========================================
    CSS Reset & Base Styles
    ========================================== */
 *, *::before, *::after {
@@ -171,6 +192,48 @@ p {
 .nav-cta-btn:hover {
     background: var(--accent-hover);
     transform: scale(1.02);
+}
+
+/* Hamburger Menu Button */
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 110;
+}
+
+.hamburger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.nav-hamburger[aria-expanded="true"] .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-hamburger[aria-expanded="true"] .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-hamburger[aria-expanded="true"] .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Focus Styles (Accessibility) */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
 }
 
 /* ==========================================
@@ -772,8 +835,64 @@ p {
 /* ==========================================
    Mobile Responsive Adjustments
    ========================================== */
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-surface);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    z-index: 150;
+}
+
+.mobile-menu-overlay.open {
+    display: flex;
+}
+
+.mobile-menu-overlay a {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.mobile-menu-overlay a:hover {
+    color: var(--accent-primary);
+}
+
+.mobile-menu-cta {
+    background: var(--accent-primary);
+    color: white !important;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 1.25rem !important;
+    margin-top: 8px;
+}
+
+.mobile-menu-cta:hover {
+    background: var(--accent-hover);
+    color: white !important;
+}
+
 @media (max-width: 767px) {
+    .nav-hamburger {
+        display: flex;
+        position: relative;
+        z-index: 200;
+    }
+
     .nav-links {
+        display: none;
+    }
+
+    .nav-cta-btn {
         display: none;
     }
 
@@ -789,11 +908,7 @@ p {
     .cta-secondary {
         width: 100%;
         justify-content: center;
-        min-height: 48px; /* Better touch targets */
-    }
-
-    .nav-cta-btn {
-        min-height: 44px;
+        min-height: 48px;
     }
 
     .services {
@@ -854,13 +969,25 @@ p {
     width: 350px;
     height: 350px;
     background: linear-gradient(225deg, var(--accent-primary), var(--accent-success));
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: calc(50% - 175px);
+    left: calc(50% - 175px);
+    animation: float-center 20s ease-in-out infinite;
     animation-delay: -5s;
 }
 
 @keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(50px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-30px, 30px) scale(0.9);
+    }
+}
+
+@keyframes float-center {
     0%, 100% {
         transform: translate(0, 0) scale(1);
     }
